@@ -26,12 +26,12 @@ module.exports = {
         }
         return config.has(key);
     },
-    getIfPresent(key,key2){
-        if(this.has(key)){
-            return this.get(key);
-        } else if(key2){
-            return this.get(key2);
+    getIfPresent(...args){
+        for(let i in args){
+            let key = args[i];
+            if(this.has(key)) return this.get(key);
         }
+        return null;
     },
     store(name){
         LOCAL_STORE[name] = LOCAL_STORE[name] || {};
